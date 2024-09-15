@@ -20,6 +20,6 @@ export class AeropuertoEntity {
     ciudad: string;
 
     @ManyToMany(() => AerolineaEntity, aerolinea => aerolinea.aeropuertos)
-    aerolineas: AerolineaEntity[]
+    aerolineas: AerolineaEntity[];
 
 }

@@ -136,7 +136,7 @@ describe('AerolineaService', () => {
     }    
   });
 
-  it('update deberia lanzar una excepción para una aerolinea con', async () => {
+  it('update deberia lanzar una excepción para una aerolinea invalida', async () => {
     let aerolinea: AerolineaEntity = listaAerolineas[0];
     aerolinea = {
       ...aerolinea, nombre: "Nuevo nombre"
