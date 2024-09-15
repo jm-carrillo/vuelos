@@ -7,9 +7,10 @@ import { AerolineaModule } from './aerolinea/aerolinea.module';
 import { AeropuertoModule } from './aeropuerto/aeropuerto.module';
 import { AeropuertoEntity } from './aeropuerto/aeropuerto.entity/aeropuerto.entity';
 import { AerolineaEntity } from './aerolinea/aerolinea.entity/aerolinea.entity';
+import { AerolineaAeropuertoModule } from './aerolinea-aeropuerto/aerolinea-aeropuerto.module';
 
 @Module({
-  imports: [AerolineaModule, AeropuertoModule,
+  imports: [AerolineaModule, AeropuertoModule, AerolineaAeropuertoModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
