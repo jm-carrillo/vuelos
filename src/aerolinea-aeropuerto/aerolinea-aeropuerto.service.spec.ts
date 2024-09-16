@@ -46,7 +46,7 @@ describe('AerolineaAeropuertoService', () => {
     aerolinea = await aerolineaRepository.save({
       nombre: faker.company.name(),
       descripcion: faker.lorem.sentence(),
-      fechaFundacion: faker.date.past(),
+      fechaFundacion: faker.date.past().toDateString(),
       paginaWeb: faker.internet.url(),
       aeropuertos: listaAeropuertos
     })
@@ -67,7 +67,7 @@ describe('AerolineaAeropuertoService', () => {
     const aerolineaNueva: AerolineaEntity = await aerolineaRepository.save({
       nombre: faker.company.name(),
       descripcion: faker.lorem.sentence(),
-      fechaFundacion: faker.date.past(),
+      fechaFundacion: faker.date.past().toDateString(),
       paginaWeb: faker.internet.url()
     })
  
@@ -82,7 +82,7 @@ describe('AerolineaAeropuertoService', () => {
     const aerolineaNueva: AerolineaEntity = await aerolineaRepository.save({
       nombre: faker.company.name(),
       descripcion: faker.lorem.sentence(),
-      fechaFundacion: faker.date.past(),
+      fechaFundacion: faker.date.past().toDateString(),
       paginaWeb: faker.internet.url()
     })
  

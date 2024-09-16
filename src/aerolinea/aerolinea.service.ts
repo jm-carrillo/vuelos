@@ -24,8 +24,8 @@ export class AerolineaService {
       }
 
     async create(aerolinea: AerolineaEntity): Promise<AerolineaEntity> {
-        const fecha_actual = new Date();         
-        if (aerolinea.fechaFundacion > fecha_actual)
+        const fecha_actual = new Date(Date.now());                 
+        if (new Date(aerolinea.fechaFundacion) > fecha_actual)
             throw new HttpException({mensaje:'La fecha de fundacion es mayor que la fecha actual', codigo: HttpStatus.BAD_REQUEST}, HttpStatus.BAD_REQUEST);
 
         return await this.aerolineaRepository.save(aerolinea);
@@ -33,11 +33,11 @@ export class AerolineaService {
 
     async update(id: string, aerolinea: AerolineaEntity): Promise<AerolineaEntity> {
         const persistedAerolinea: AerolineaEntity = await this.aerolineaRepository.findOne({where:{id}});
-        const fecha_actual = new Date();
+        const fecha_actual = new Date(Date.now());
         if (!persistedAerolinea)
           throw new HttpException({mensaje:'La aerolinea con el id dado no existe', codigo: HttpStatus.NOT_FOUND}, HttpStatus.NOT_FOUND);
         if (aerolinea.fechaFundacion)
-            if (aerolinea.fechaFundacion > fecha_actual)
+            if (new Date(aerolinea.fechaFundacion) > fecha_actual)
                 throw new HttpException({mensaje:'La fecha de fundacion es mayor que la fecha actual', codigo: HttpStatus.BAD_REQUEST}, HttpStatus.BAD_REQUEST);        
             
         return await this.aerolineaRepository.save({...persistedAerolinea, ...aerolinea});

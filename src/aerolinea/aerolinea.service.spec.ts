@@ -32,7 +32,7 @@ describe('AerolineaService', () => {
         const aerolinea: AerolineaEntity = await repository.save({
           nombre: faker.company.name(),
           descripcion: faker.lorem.sentence(),
-          fechaFundacion: faker.date.past(),
+          fechaFundacion: faker.date.past().toDateString(),
           paginaWeb: faker.internet.url()
         });
         listaAerolineas.push(aerolinea);
@@ -75,7 +75,7 @@ describe('AerolineaService', () => {
       id: "",
       nombre: faker.company.name(),
       descripcion: faker.lorem.sentence(),
-      fechaFundacion: faker.date.past(),
+      fechaFundacion: faker.date.past().toDateString(),
       paginaWeb: faker.internet.url(),
       aeropuertos: []
     }
@@ -96,7 +96,7 @@ describe('AerolineaService', () => {
       id: "",
       nombre: faker.company.name(),
       descripcion: faker.lorem.sentence(),
-      fechaFundacion: faker.date.future(),
+      fechaFundacion: faker.date.future().toDateString(),
       paginaWeb: faker.internet.url(),
       aeropuertos: []
     }
@@ -124,7 +124,7 @@ describe('AerolineaService', () => {
   it('update deberia lanzar una excepción para una aerolinea con fecha de fundacion incorrecta', async () => {
     let aerolinea: AerolineaEntity = listaAerolineas[0];
     aerolinea = {
-      ...aerolinea, fechaFundacion: faker.date.future()
+      ...aerolinea, fechaFundacion: faker.date.future().toDateString()
     }
     try {
       await service.update(aerolinea.id, aerolinea)
