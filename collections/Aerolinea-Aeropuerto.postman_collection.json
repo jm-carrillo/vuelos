@@ -1,0 +1,1204 @@
+{
+	"info": {
+		"_postman_id": "560bbe92-473a-4ba1-a829-7a0f1fda2196",
+		"name": "Aerolinea-Aeropuerto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24763581"
+	},
+	"item": [
+		{
+			"name": "Agregar un Aeropuerto a una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports/{{aeropuerto_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar  un Producto a una Categoria",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categoria/2fff3f5b-5f65-4c07-9dea-98b466b95004/productos/aabcb82d-0444-42da-90fb-b41f77e033c0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"2fff3f5b-5f65-4c07-9dea-98b466b95004",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c0"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"data\": \n    {\n      \"id\": \"2fff3f5b-5f65-4c07-9dea-98b466b9500\",\n      \"nombre\": \"Condimentos\",\n      \"productos\": [\n        {\n          \"id\": \"aabcb82d-0444-42da-90fb-b41f77e033c0\",\n          \"nombre\": \"Pimienta Negra\"\n        }\n      ]\n    }\n  \n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un Aeropuerto a una Aerolinea que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"La aerolinea con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{$guid}}/airports/{{aeropuerto_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{$guid}}",
+						"airports",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar  un Producto a una Categoria que no existe",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos/aabcb82d-0444-42da-90fb-b41f77e033c0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"codigo\": 404,\r\n    \"mensaje\": \"La categoria con el id dado no existe\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un Aeropuerto que no existe a una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"El aeropuerto con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports/{{$guid}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports",
+						"{{$guid}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un Producto que no existe a una Categoria",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos/aabcb82d-0444-42da-90fb-b41f77e033c0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"codigo\": 404,\r\n    \"mensaje\": \"El producto con el id dado no existe\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un Aeropuerto de una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports/{{aeropuerto_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un Producto de una Categoria",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/categoria/5930590a-6be9-4e39-a168-8c5a72871e19/productos/aabcb82d-0444-42da-90fb-b41f77e033c",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categoria",
+								"5930590a-6be9-4e39-a168-8c5a72871e19",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n  \"data\": \r\n    {\r\n      \"id\": \"aabcb82d-0444-42da-90fb-b41f77e033c0\",\r\n      \"nombre\": \"Pimienta Negra\",\r\n      \"descripcion\": \"La pimienta negra es una especia que se obtiene de la planta Piper nigrum. Es conocida por su sabor picante y su capacidad para mejorar el sabor de numerosos platos, desde sopas y ensaladas hasta carnes y salsas\",\r\n      \"historia\": \" Originaria de la India, la pimienta negra ha sido apreciada durante milenios. Fue una de las primeras especias que impulsaron el comercio global, siendo altamente valorada en la antigua Roma y durante la Edad Media en Europa. La pimienta era tan valiosa que a menudo se utilizaba como moneda\"\r\n    }\r\n  \r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un Aeropuerto que no existe de una  Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"El aeropuerto con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports/{{$guid}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports",
+						"{{$guid}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un Producto que no existe de una Categoria",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/2fff3f5b-5f65-4c07-9dea-98b466b95004/productos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"2fff3f5b-5f65-4c07-9dea-98b466b95004",
+								"productos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": 404,\n    \"mensaje\": \"El producto con el id dado no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un Aeropuerto de una Aerolinea que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"La aerolinea con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{$guid}}/airports/{{aeropuerto_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{$guid}}",
+						"airports",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un Producto de una Categoria que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos/aabcb82d-0444-42da-90fb-b41f77e033c0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": 404,\n    \"mensaje\": \"La categoria con el id dado no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un Aeropuerto que no esta asociado a una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"El aeropuerto con el id dado no esta asociado con la aerolinea\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports/{{aeropuerto_id_2}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports",
+						"{{aeropuerto_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un producto que no está asociado a una Categoria",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/categoria/5930590a-6be9-4e39-a168-8c5a72871e19/productos/6a5e0bcc-303a-4215-831d-bb4a6598abed",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"categoria",
+								"5930590a-6be9-4e39-a168-8c5a72871e19",
+								"productos",
+								"6a5e0bcc-303a-4215-831d-bb4a6598abed"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n   \"codigo\": 412,\r\n   \"mensaje\": \"El producto con el id dado no esta asociado con la categoria\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener los Aeropuertos de una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener los productos de una Categoria",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/5930590a-6be9-4e39-a168-8c5a72871e19/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"5930590a-6be9-4e39-a168-8c5a72871e19",
+								"productos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n  \"data\": [\r\n    {\r\n      \"id\": \"aabcb82d-0444-42da-90fb-b41f77e033c0\",\r\n      \"descripcion\": \"La pimienta negra es una especia que se obtiene de la planta Piper nigrum. Es conocida por su sabor picante y su capacidad para mejorar el sabor de numerosos platos, desde sopas y ensaladas hasta carnes y salsas\",\r\n      \"historia\": \" Originaria de la India, la pimienta negra ha sido apreciada durante milenios. Fue una de las primeras especias que impulsaron el comercio global, siendo altamente valorada en la antigua Roma y durante la Edad Media en Europa. La pimienta era tan valiosa que a menudo se utilizaba como moneda\",\r\n      \"nombre\": \"Pimienta Negra\"\r\n    }\r\n  ]\r\n}\r\n      "
+				}
+			]
+		},
+		{
+			"name": "Obtener los Aeropuertos de una Aerolinea que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"La aerolinea con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{$guid}}/airports",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{$guid}}",
+						"airports"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener los Productos de una Categoria que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": 404,\n    \"mensaje\": \"La categoria con el id dado no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar la lista de Aeropuertos de una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"{{aeropuerto_id_2}}\",\r\n        \"nombre\": \"Rafael Núñez\",\r\n        \"codigo\": \"CTG\",\r\n        \"pais\": \"Colombia\",\r\n        \"ciudad\": \"Cartagena\"       \r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar la lista de Productos de una Categoria",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{producto_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categoria/5930590a-6be9-4e39-a168-8c5a72871e19/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"5930590a-6be9-4e39-a168-8c5a72871e19",
+								"productos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n  \"data\": \r\n    {\r\n      \"id\": \"5930590a-6be9-4e39-a168-8c5a72871e19\",\r\n      \"nombre\": \"Condimentos\",\r\n      \"productos\": [\r\n        {\r\n          \"id\": \"aabcb82d-0444-42da-90fb-b41f77e033c0\",\r\n          \"descripcion\": \"La pimienta negra es una especia que se obtiene de la planta Piper nigrum. Es conocida por su sabor picante y su capacidad para mejorar el sabor de numerosos platos, desde sopas y ensaladas hasta carnes y salsas\",\r\n          \"historia\": \" Originaria de la India, la pimienta negra ha sido apreciada durante milenios. Fue una de las primeras especias que impulsaron el comercio global, siendo altamente valorada en la antigua Roma y durante la Edad Media en Europa. La pimienta era tan valiosa que a menudo se utilizaba como moneda\",\r\n          \"nombre\": \"Pimienta Negra\"\r\n        }\r\n      ]\r\n    }\r\n  \r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar la lista de Aeropuertos de una Aerolinea que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"La aerolinea con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"{{aeropuerto_id_2}}\",\r\n        \"nombre\": \"Rafael Núñez\",\r\n        \"codigo\": \"CTG\",\r\n        \"pais\": \"Colombia\",\r\n        \"ciudad\": \"Cartagena\"       \r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{$guid}}/airports",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{$guid}}",
+						"airports"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar la lista de Productos de una Categoria que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{producto_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"codigo\": 404,\r\n    \"mensaje\": \"La categoria con el id dado no existe\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar los Aeropuertos que no existen de una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"El aeropuerto con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"{{$guid}}\",\r\n        \"nombre\": \"Rafael Núñez\",\r\n        \"codigo\": \"CTG\",\r\n        \"pais\": \"Colombia\",\r\n        \"ciudad\": \"Cartagena\"       \r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar los Productos que no existen de una Categoria",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n   {\r\n       \"id\": \"{{producto_id_2}}\"\r\n   }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"codigo\": 404,\r\n    \"mensaje\": \"El producto con el id dado no existe\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un Aeropuerto de una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports/{{aeropuerto_id_2}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports",
+						"{{aeropuerto_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un Producto de una Categoria",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/5930590a-6be9-4e39-a168-8c5a72871e19/productos/aabcb82d-0444-42da-90fb-b41f77e033c0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"5930590a-6be9-4e39-a168-8c5a72871e19",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c0"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Eliminar un Aeropuerto de una Aerolinea que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"La aerolinea con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{$guid}}/airports/{{aeropuerto_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{$guid}}",
+						"airports",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un Producto de una Categoria que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos/aabcb82d-0444-42da-90fb-b41f77e033c0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c0"
+							]
+						}
+					},
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": 404,\n    \"mensaje\": \"La categoria con el id dado no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un Aeropuerto que no existe de una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"El aeropuerto con el id dado no existe\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports/{{$guid}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports",
+						"{{$guid}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un Producto que no existe de una Categoria",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos/aabcb82d-0444-42da-90fb-b41f77e033c0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c0"
+							]
+						}
+					},
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": 404,\n    \"mensaje\": \"El producto con el id dado no existe\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un Aeropuerto que no esta asociado a una Aerolinea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.mensaje).to.eql(\"El aeropuerto con el id dado no esta asociado con la aerolinea\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/airlines/{{aerolinea_id}}/airports/{{aeropuerto_id}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"airlines",
+						"{{aerolinea_id}}",
+						"airports",
+						"{{aeropuerto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un Producto que no esta asociado a una Categoria",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categoria/00000000-0000-0000-0000-000000000000/productos/aabcb82d-0444-42da-90fb-b41f77e033c0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categoria",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"aabcb82d-0444-42da-90fb-b41f77e033c0"
+							]
+						}
+					},
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"codigo\": 404,\n    \"mensaje\": \"El producto con el id dado no esta asociado con la categoria\"\n}"
+				}
+			]
+		}
+	]
+}
